@@ -6,7 +6,8 @@ const JSON_SERVER_USERS: string = "http://localhost:3000/users";
 
 export default class UsersPostService {
   static async getUsers() {
-    return (await axios.get(JSON_SERVER_USERS)) as userProps[];
+    const response = await axios.get(JSON_SERVER_USERS);
+    return response.data as userProps[];
   }
 
   static async addUser(userName: string) {
@@ -21,5 +22,13 @@ export default class UsersPostService {
   static async deleteUserById(userId: string) {
     await axios.delete(`${JSON_SERVER_USERS}/${userId}`);
     return userId as string;
+  }
+
+  static async editUser(id: string, name: string) {
+    const response = await axios.patch(`${JSON_SERVER_USERS}/${id}`, {
+      id,
+      name,
+    });
+    return response.data;
   }
 }

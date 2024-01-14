@@ -1,6 +1,12 @@
 {
   "users": [
-    { "id": "n3df6fg0wtf24", "name": "Artem" },
-    { "id": "ldnf7tw49k01b", "name": "Sophia" }
+    {
+      "id": "n3df6fg0wtf24",
+      "name": "Artem"
+    },
+    {
+      "id": "0r2zN_z1YiSXff2EWfQTc",
+      "name": "Вася"
+    }
   ]
 }

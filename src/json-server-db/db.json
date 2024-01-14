@@ -1,5 +1,6 @@
 {
-  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" }
+  "users": [
+    { "id": "n3df6fg0wtf24", "name": "Artem" },
+    { "id": "ldnf7tw49k01b", "name": "Sophia" }
+  ]
 }

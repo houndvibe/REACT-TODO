@@ -2,9 +2,21 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    colors: {
+      yellow: "#ffdc5c",
+      yellowHover: "#ffd333",
+      yellowActive: "#ffca0a",
+      red: "#ff6347",
+      redHover: "#ff5233",
+      redActive: "#ff401f",
+      blue: "#3aa8c1",
+      blueHover: "#38a4bc",
+      blueActive: "#2f899d",
+      grey: "#e5e4e2",
+      white: "#FFFFFF",
+      ghostWhite: "#f8f8ff",
+      black: "#000000",
+    },
   },
   plugins: [],
 };
-
-

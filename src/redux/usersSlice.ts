@@ -58,6 +58,7 @@ export const deleteUserById = createAsyncThunk(
     return (await UsersPostService.deleteUserById(userId)) as string;
   },
 );
+
 export const editUserBuId = createAsyncThunk(
   "users/editUser",
   async ({ id, name }: userProps) => {

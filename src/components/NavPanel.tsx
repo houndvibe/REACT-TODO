@@ -2,7 +2,7 @@ import CurrentUserPanel from "./CurrentUserPanel";
 
 const NavPanel = () => {
   return (
-    <div className="bg-green-400 min-w-80 basis-1/4 p-2">
+    <div className="mr-2 min-w-80 basis-1/4 rounded-md bg-yellow p-2">
       <CurrentUserPanel />
     </div>
   );

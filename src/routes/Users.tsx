@@ -46,15 +46,19 @@ const Users = () => {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="flex-col justify-around">
       {isLoading ? (
         <>Loading...</>
       ) : isError ? (
         <>Error!{error.toString()}</>
       ) : (
-        <div className="space-y-2">
+        <div>
           {users?.map((user: userProps) => (
-            <div key={nanoid()} onClick={handleClickUser(user)}>
+            <div
+              key={nanoid()}
+              onClick={handleClickUser(user)}
+              className="mb-2"
+            >
               <UserItem
                 user={user}
                 isOpen={editableUserId == user.id ? true : false}
@@ -64,6 +68,7 @@ const Users = () => {
           ))}
         </div>
       )}
+
       <MyButton variant="primary" onClick={handleAddNewUser}>
         add user
       </MyButton>

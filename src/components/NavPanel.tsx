@@ -1,9 +1,9 @@
-import CurrentUserPanel from "./CurrentUserPanel";
+import Users from "./UsersList";
 
 const NavPanel = () => {
   return (
-    <div className="mr-2 min-w-80 basis-1/4 rounded-md bg-yellow p-2">
-      <CurrentUserPanel />
+    <div className="min-w-90 mr-2 basis-1/4 rounded-md bg-yellow p-2">
+      <Users />
     </div>
   );
 };

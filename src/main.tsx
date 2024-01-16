@@ -3,7 +3,8 @@ import App from "./routes/App.tsx";
 import { Provider } from "react-redux";
 import store from "./redux/store.ts";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Users from "./routes/Users.tsx";
+import TodoIndexPage from "./components/TodoIndexPage.tsx";
+import { loader as UserPageLoader, UserPage } from "./routes/UserPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -12,13 +13,14 @@ const router = createBrowserRouter([
     errorElement: <>ErrorPage</>,
     children: [
       {
-        path: "users",
-        element: <Users />,
+        index: true,
+        element: <TodoIndexPage />,
         errorElement: <>ErrorPage</>,
       },
       {
-        path: "users/:userId",
-        element: <>users/:userId</>,
+        path: "user/:userId",
+        loader: UserPageLoader,
+        element: <UserPage />,
         errorElement: <>ErrorPage</>,
       },
     ],

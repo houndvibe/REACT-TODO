@@ -1,6 +1,6 @@
 import { nanoid } from "@reduxjs/toolkit";
-import UserItem from "../components/UserItem";
-import MyButton from "../components/ui/MyButton/MyButton";
+import UserItem from "./UserItem";
+import MyButton from "./ui/MyButton/MyButton";
 import {
   useAddUserMutation,
   useGetUsersQuery,

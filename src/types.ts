@@ -6,3 +6,12 @@ export interface userProps {
   age: number;
   password: string;
 }
+export interface todoProps {
+  id: string;
+  userId:string
+  title: string;
+  isCompleted: boolean;
+  startDate: string;
+  endDate: number;
+  description:string
+}

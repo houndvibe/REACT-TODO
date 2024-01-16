@@ -3,7 +3,6 @@ import App from "./routes/App.tsx";
 import { Provider } from "react-redux";
 import store from "./redux/store.ts";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { fetchUsers } from "./redux/usersSlice.ts";
 import Users from "./routes/Users.tsx";
 
 const router = createBrowserRouter([
@@ -31,5 +30,3 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <RouterProvider router={router} />
   </Provider>,
 );
-
-store.dispatch(fetchUsers());

@@ -9,7 +9,7 @@ const MyButton: React.FC<MyButtonProps> = (props) => {
 
   const makeClassname = (variant: buttonVariants): string => {
     const baseStyles: string =
-      " py-2 px-7 rounded-md shadow-xl m-4 hover:-translate-x-0.5 hover:translate-y-0.5 transition ";
+      " py-2 px-7 rounded-md shadow-xl  hover:-translate-x-0.5 hover:translate-y-0.5 transition ";
     const specificStyles: string =
       variant === "primary"
         ? "text-white bg-blue hover:bg-blueHover active:bg-blueActive "

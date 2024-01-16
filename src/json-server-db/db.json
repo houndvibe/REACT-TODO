@@ -1,8 +1,31 @@
 {
+  "currentUser": {
+    "id": "g4xUkF9Ry5OTr4AP8gCaA"
+  },
   "users": [
     {
-      "id": "n3df6fg0wtf24",
-      "name": "Artem"
+      "id": "XcheC5fm05TOjscMFkuJ-",
+      "nickName": "Hound",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "password": ""
+    },
+    {
+      "id": "DWFCFYw4yaC6tBoiCno-d",
+      "nickName": "123",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "password": ""
+    },
+    {
+      "id": "g4xUkF9Ry5OTr4AP8gCaA",
+      "nickName": "sdfsdf",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "password": ""
     }
   ]
 }

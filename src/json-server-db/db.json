@@ -1,6 +1,31 @@
 {
   "currentUser": {
-    "id": "jwEFoFDl52mp256pE4QDA"
+    "id": "dPNZw1WxxAkkv7ndPL-Qg"
   },
-  "users": []
+  "users": [
+    {
+      "id": "WZeRLRIhDz-SlvEj2oP__",
+      "nickName": "New user",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "password": ""
+    },
+    {
+      "id": "dPNZw1WxxAkkv7ndPL-Qg",
+      "nickName": "New user",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "password": ""
+    },
+    {
+      "id": "v42zeUf8xJPfY1dSXaziE",
+      "nickName": "qweqdf",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "password": ""
+    }
+  ]
 }

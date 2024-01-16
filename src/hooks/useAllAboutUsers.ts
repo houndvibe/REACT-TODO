@@ -1,5 +1,8 @@
 import { useMemo } from "react";
-import { useGetCurrentUserIdQuery, useGetUsersQuery } from "../redux/apiSlice";
+import {
+  useGetCurrentUserIdQuery,
+  useGetUsersQuery,
+} from "../redux/userApiSlice";
 import { userProps } from "../types";
 
 export const useAllAboutUsers = () => {

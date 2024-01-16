@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { userProps } from "../types";
 import MyButton from "./ui/MyButton/MyButton";
-import { useDeleteUserMutation, useEditUserMutation } from "../redux/apiSlice";
+import {
+  useDeleteUserMutation,
+  useEditUserMutation,
+} from "../redux/userApiSlice";
 import { PiEyeClosedBold, PiEyeBold } from "react-icons/pi";
 import { MdOutlineDone } from "react-icons/md";
 import { useAllAboutUsers } from "../hooks/useAllAboutUsers";

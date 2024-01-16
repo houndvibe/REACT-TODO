@@ -5,7 +5,7 @@ import {
   useAddUserMutation,
   useGetUsersQuery,
   useSetCurrentUserIdMutation,
-} from "../redux/apiSlice";
+} from "../redux/userApiSlice";
 import { userProps } from "../types";
 import { useState } from "react";
 

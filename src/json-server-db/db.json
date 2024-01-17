@@ -24,38 +24,47 @@
     {
       "id": "123131231",
       "userId": "tJsZonTii0MiDYh1kgv9t",
-      "title": "testTask1",
-      "isCompleted": false,
-      "startDate": "string",
-      "endDate": "number",
-      "description": "1312312"
-    },
-    {
-      "id": "123131231",
-      "userId": "tJsZonTii0MiDYh1kgv9t",
       "title": "testTask2",
-      "isCompleted": false,
+      "status": "",
       "startDate": "string",
       "endDate": "number",
       "description": "1312312"
     },
     {
-      "id": "1231dddddd31231",
+      "id": "cpYksZWXcovDkYoggTX9k",
       "userId": "49nv2890mbg0vgi09b5lp",
-      "title": "testTask3",
-      "isCompleted": false,
-      "startDate": "string",
-      "endDate": "number",
-      "description": "1312312"
+      "title": "Todo...",
+      "status": "not started",
+      "startDate": "123",
+      "endDate": "123",
+      "description": "todo description..."
     },
     {
-      "id": "1231312fffff31",
+      "id": "3xXGbLrSGepSyeWGAeUit",
       "userId": "49nv2890mbg0vgi09b5lp",
-      "title": "testTask4",
-      "isCompleted": false,
-      "startDate": "string",
-      "endDate": "number",
-      "description": "1312312"
+      "title": "Todo...",
+      "status": "not started",
+      "startDate": "123",
+      "endDate": "123",
+      "description": "todo description..."
+    },
+    {
+      "id": "6PpfD9RTAam-mTqewFfad",
+      "userId": null,
+      "title": "Todo...",
+      "status": "not started",
+      "startDate": "123",
+      "endDate": "123",
+      "description": "todo description..."
+    },
+    {
+      "id": "i6pkdJIP5whC3hEYQ_Q-d",
+      "userId": "49nv2890mbg0vgi09b5lp",
+      "title": "Todo...",
+      "status": "not started",
+      "startDate": "123",
+      "endDate": "123",
+      "description": "todo description..."
     }
   ]
 }

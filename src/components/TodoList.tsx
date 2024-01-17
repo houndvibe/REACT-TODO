@@ -1,17 +1,31 @@
+import { nanoid } from "@reduxjs/toolkit";
+import { todoProps } from "../types";
 import TodoItem from "./TodoItem";
+import { useState } from "react";
 
-const TodoList = () => {
-  const todos = [1, 2, 3, 4];
+interface todoListProps {
+  todos: todoProps[];
+}
 
-  const renderedList = todos.map((todo) => {
-    return <TodoItem />;
+const TodoList: React.FC<todoListProps> = ({ todos }) => {
+  const [currentTodoId, setCurrentTodoId] = useState<string>("");
+
+  const handleClickTodoItem = (id: string) => () => {
+    setCurrentTodoId(id);
+  };
+
+  const renderedList = todos.map((todo: todoProps) => {
+    return (
+      <div key={nanoid()} onClick={handleClickTodoItem(todo.id)}>
+        <TodoItem
+          todoItem={todo}
+          isOpen={currentTodoId == todo.id ? true : false}
+        />
+      </div>
+    );
   });
-  return (
-    <div className="mt-4 rounded-md bg-grey p-2 ">
-      <div>filters</div>
-      <div>{renderedList}</div>
-    </div>
-  );
+
+  return <div>{renderedList}</div>;
 };
 
 export default TodoList;

@@ -1,16 +1,16 @@
 import { useLoaderData } from "react-router-dom";
-import { useAllAboutUsers } from "../hooks/useAllAboutUsers";
+/* import { useAllAboutUsers } from "../hooks/useAllAboutUsers"; */
 import { useGetTodosQuery } from "../redux/todoApiSlice";
-import TodoItem from "../components/TodoItem";
 import { todoProps } from "../types";
-import { nanoid } from "@reduxjs/toolkit";
+import TodoList from "../components/TodoList";
+import TodoStaticPannel from "../components/TodoStaticPannel";
 
 export const loader = ({ params }) => {
   return params.userId;
 };
 
 export const UserPage = () => {
-  const {
+  /*   const {
     currentUser,
     currentUserId,
     allUsers,
@@ -18,9 +18,13 @@ export const UserPage = () => {
     isAllUsersLoading,
     currentUserIdError,
     allUsesrError,
-  } = useAllAboutUsers();
+  } = useAllAboutUsers(); */
 
-  const userId = useLoaderData();
+  /* 
+  const filteedAndSortedTodos = useProcessTodos()
+ */
+
+  const userId: string = useLoaderData();
 
   const {
     data: todos,
@@ -31,11 +35,10 @@ export const UserPage = () => {
   const currentUserTodos = todos
     ? todos.filter((todo: todoProps) => todo.userId == userId)
     : [];
-  /* 
-  const filteedAndSortedTodos = useProcessTodos()
- */
+
   return (
-    <div>
+    <div className="mt-2 ">
+      <TodoStaticPannel />
       <div>
         {todosError ? (
           <>Oh no, there was an error</>
@@ -43,11 +46,7 @@ export const UserPage = () => {
           <>Loading...</>
         ) : todos ? (
           <div>
-            {currentUserTodos.map((item: todoProps) => (
-              <div key={nanoid()}>
-                <TodoItem {...item} />
-              </div>
-            ))}
+            <TodoList todos={currentUserTodos} />
           </div>
         ) : (
           <>No active User</>
@@ -56,6 +55,3 @@ export const UserPage = () => {
     </div>
   );
 };
-
-//завел todosApiSlice
-//закинул todo сюда через useGetTodosQuery()

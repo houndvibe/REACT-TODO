@@ -8,10 +8,10 @@ export interface userProps {
 }
 export interface todoProps {
   id: string;
-  userId:string
+  userId: string;
   title: string;
   isCompleted: boolean;
   startDate: string;
   endDate: number;
-  description:string
+  description: string;
 }

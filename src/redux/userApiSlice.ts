@@ -1,7 +1,7 @@
 import { userProps } from "../types";
 import { apiSlice } from "./apiSlice";
 
-export const usersApiSlice = apiSlice.injectEndpoints({
+export const userApiSlice = apiSlice.injectEndpoints({
   overrideExisting: true,
   endpoints: (builder) => ({
     getUsers: builder.query({
@@ -45,7 +45,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       async onQueryStarted(user, { dispatch, queryFulfilled }) {
         const patchResult = dispatch(
-          usersApiSlice.util.updateQueryData(
+          userApiSlice.util.updateQueryData(
             "getCurrentUserId",
             undefined,
             () => user,
@@ -75,4 +75,4 @@ export const {
   useEditUserMutation,
   useSetCurrentUserIdMutation,
   useGetCurrentUserIdQuery,
-} = usersApiSlice;
+} = userApiSlice;

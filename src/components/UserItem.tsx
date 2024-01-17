@@ -21,6 +21,10 @@ const UserItem: React.FC<userItemProps> = ({
   isOpen,
   handleCloseAll,
 }) => {
+  const [deleteUser, { isLoading }] = useDeleteUserMutation();
+  const [editUser] = useEditUserMutation();
+  const { currentUser } = useAllAboutUsers();
+
   const [isPassVisible, setisPassVisible] = useState(false);
   const [editedUser, setEditedUser] = useState<userProps>({
     ...user,
@@ -30,9 +34,6 @@ const UserItem: React.FC<userItemProps> = ({
   useEffect(() => {
     nameFieldRef.current && nameFieldRef?.current.focus();
   }, [isOpen]);
-
-  const [deleteUser, { isLoading }] = useDeleteUserMutation();
-  const [editUser] = useEditUserMutation();
 
   const handleChangeUserInfo =
     (type: string) =>
@@ -53,28 +54,21 @@ const UserItem: React.FC<userItemProps> = ({
     setEditedUser({ ...user });
   };
 
-  const { currentUser } = useAllAboutUsers();
-
-  let activeUserSign;
-  if (currentUser) {
-    activeUserSign =
-      currentUser.id == user.id ? (
-        <div className="mr-2 rounded-md bg-blue p-1">
-          <MdOutlineDone />
-        </div>
-      ) : null;
-  }
-
   return (
     <NavLink to={`user/${user.id}`}>
       <div
-        className={`relative min-w-80 overflow-hidden rounded-lg bg-grey p-2  `}
+        className={`relative min-w-80 overflow-hidden rounded-lg bg-grey p-2`}
       >
         <div className="flex items-center justify-between">
           <div className="text-4xl">{user.nickName}</div>
           {isLoading && <div className="px-5">Delete... </div>}
-          {activeUserSign}
+          {currentUser?.id == user.id ? (
+            <div className="mr-2 rounded-md bg-blue p-1">
+              <MdOutlineDone />
+            </div>
+          ) : null}
         </div>
+
         {isOpen && (
           <div className="mt-3 flex flex-wrap">
             {Object.entries(user).map(([fieldName]) => {
@@ -105,6 +99,7 @@ const UserItem: React.FC<userItemProps> = ({
                 </div>
               );
             })}
+
             <div className="my-2 ml-1  flex space-x-2">
               <div>
                 <MyButton variant="primary" onClick={handleOk}>

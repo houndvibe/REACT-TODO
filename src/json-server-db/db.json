@@ -1,31 +1,61 @@
 {
   "currentUser": {
-    "id": "C4g4a-utCLvizZRhKQuDk"
+    "id": "tJsZonTii0MiDYh1kgv9t"
   },
   "users": [
     {
-      "id": "C4g4a-utCLvizZRhKQuDk",
-      "nickName": "New user",
+      "id": "tJsZonTii0MiDYh1kgv9t",
+      "nickName": "Hound",
       "firstName": "",
       "lastName": "",
       "age": "",
       "password": ""
     },
     {
-      "id": "cfrdeRuF84--ROVXUb8dt",
-      "nickName": "New user123",
+      "id": "49nv2890mbg0vgi09b5lp",
+      "nickName": "Dan",
       "firstName": "",
       "lastName": "",
       "age": "",
       "password": ""
+    }
+  ],
+  "todos": [
+    {
+      "id": "123131231",
+      "userId": "tJsZonTii0MiDYh1kgv9t",
+      "title": "testTask1",
+      "isCompleted": false,
+      "startDate": "string",
+      "endDate": "number",
+      "description": "1312312"
     },
     {
-      "id": "ZQS2rdN_SP8c5JVZ5nORV",
-      "nickName": "New user",
-      "firstName": "",
-      "lastName": "",
-      "age": "",
-      "password": ""
+      "id": "123131231",
+      "userId": "tJsZonTii0MiDYh1kgv9t",
+      "title": "testTask2",
+      "isCompleted": false,
+      "startDate": "string",
+      "endDate": "number",
+      "description": "1312312"
+    },
+    {
+      "id": "1231dddddd31231",
+      "userId": "49nv2890mbg0vgi09b5lp",
+      "title": "testTask3",
+      "isCompleted": false,
+      "startDate": "string",
+      "endDate": "number",
+      "description": "1312312"
+    },
+    {
+      "id": "1231312fffff31",
+      "userId": "49nv2890mbg0vgi09b5lp",
+      "title": "testTask4",
+      "isCompleted": false,
+      "startDate": "string",
+      "endDate": "number",
+      "description": "1312312"
     }
   ]
 }

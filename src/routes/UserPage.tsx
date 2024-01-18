@@ -1,30 +1,15 @@
-import { useLoaderData } from "react-router-dom";
-/* import { useAllAboutUsers } from "../hooks/useAllAboutUsers"; */
 import { useGetTodosQuery } from "../redux/todoApiSlice";
 import { todoProps } from "../types";
-import TodoList from "../components/TodoList";
-import TodoStaticPannel from "../components/TodoStaticPannel";
+import TodoList from "../components/todos/TodoList";
+import TodoStaticPannel from "../components/todos/TodoStaticPannel";
+import { useAllAboutUsers } from "../hooks/useAllAboutUsers";
 
 export const loader = ({ params }) => {
   return params.userId;
 };
 
 export const UserPage = () => {
-  /*   const {
-    currentUser,
-    currentUserId,
-    allUsers,
-    isCurrentUserIdLoading,
-    isAllUsersLoading,
-    currentUserIdError,
-    allUsesrError,
-  } = useAllAboutUsers(); */
-
-  /* 
-  const filteedAndSortedTodos = useProcessTodos()
- */
-
-  const userId: string = useLoaderData();
+  const { currentUser } = useAllAboutUsers();
 
   const {
     data: todos,
@@ -33,12 +18,13 @@ export const UserPage = () => {
   } = useGetTodosQuery(undefined);
 
   const currentUserTodos = todos
-    ? todos.filter((todo: todoProps) => todo.userId == userId)
+    ? todos.filter((todo: todoProps) => todo.userId == currentUser?.id)
     : [];
 
   return (
-    <div className="mt-2 ">
+    <div>
       <TodoStaticPannel />
+      <div className="mt-4 text-2xl">{currentUser?.nickName} TODOS:</div>
       <div>
         {todosError ? (
           <>Oh no, there was an error</>

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { userProps } from "../types";
-import MyButton from "./ui/MyButton/MyButton";
+import { userProps } from "../../types";
+import MyButton from "../ui/MyButton/MyButton";
 import {
   useDeleteUserMutation,
   useEditUserMutation,
-} from "../redux/userApiSlice";
+} from "../../redux/userApiSlice";
 import { PiEyeClosedBold, PiEyeBold } from "react-icons/pi";
 import { MdOutlineDone } from "react-icons/md";
-import { useAllAboutUsers } from "../hooks/useAllAboutUsers";
+import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
 import { NavLink } from "react-router-dom";
 
 interface userItemProps {
@@ -21,15 +21,15 @@ const UserItem: React.FC<userItemProps> = ({
   isOpen,
   handleCloseAll,
 }) => {
-  const [deleteUser, { isLoading }] = useDeleteUserMutation();
-  const [editUser] = useEditUserMutation();
-  const { currentUser } = useAllAboutUsers();
-
   const [isPassVisible, setisPassVisible] = useState(false);
   const [editedUser, setEditedUser] = useState<userProps>({
     ...user,
   });
   const nameFieldRef = useRef<null | HTMLInputElement>(null);
+
+  const [deleteUser] = useDeleteUserMutation();
+  const [editUser] = useEditUserMutation();
+  const { currentUser } = useAllAboutUsers();
 
   useEffect(() => {
     nameFieldRef.current && nameFieldRef?.current.focus();
@@ -46,11 +46,11 @@ const UserItem: React.FC<userItemProps> = ({
   };
 
   const handleOk = (): void => {
-    handleCloseAll();
     editUser(editedUser);
   };
 
   const handleCancel = (): void => {
+    handleCloseAll();
     setEditedUser({ ...user });
   };
 
@@ -61,7 +61,6 @@ const UserItem: React.FC<userItemProps> = ({
       >
         <div className="flex items-center justify-between">
           <div className="text-4xl">{user.nickName}</div>
-          {isLoading && <div className="px-5">Delete... </div>}
           {currentUser?.id == user.id ? (
             <div className="mr-2 rounded-md bg-blue p-1">
               <MdOutlineDone />
@@ -103,7 +102,7 @@ const UserItem: React.FC<userItemProps> = ({
             <div className="my-2 ml-1  flex space-x-2">
               <div>
                 <MyButton variant="primary" onClick={handleOk}>
-                  ok
+                  save
                 </MyButton>
               </div>
               <div>

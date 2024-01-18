@@ -1,29 +1,30 @@
 import { nanoid } from "@reduxjs/toolkit";
 import UserItem from "./UserItem";
-import MyButton from "./ui/MyButton/MyButton";
+import MyButton from "../ui/MyButton/MyButton";
 import {
   useAddUserMutation,
   useGetUsersQuery,
   useSetCurrentUserIdMutation,
-} from "../redux/userApiSlice";
-import { userProps } from "../types";
-import { useState } from "react";
+} from "../../redux/userApiSlice";
+import { userProps } from "../../types";
+import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
 
-const Users = () => {
+const UsersList = () => {
   const [addNewUser] = useAddUserMutation();
-  const { data: users, isLoading, isError, error } = useGetUsersQuery("");
   const [setCurrentUserId] = useSetCurrentUserIdMutation();
-  const [editableUserId, setEditableUserId] = useState<string | null>(null);
+
+  const { data: users, isLoading, isError, error } = useGetUsersQuery("");
+
+  const { currentUserId } = useAllAboutUsers();
 
   const handleClickUser = (user: userProps) => (): void => {
-    if (editableUserId != user.id) {
-      setEditableUserId(user.id);
+    if (currentUserId != user.id) {
       setCurrentUserId(user.id);
     }
   };
 
   const handleCloseAll = (): void => {
-    setEditableUserId(null);
+    setCurrentUserId(null);
   };
 
   const handleAddNewUser = async () => {
@@ -39,7 +40,6 @@ const Users = () => {
       };
       await setCurrentUserId(id).unwrap();
       await addNewUser(newUser).unwrap();
-      await setEditableUserId(id);
     } catch (err) {
       console.error("Failed to save the post: ", err);
     }
@@ -61,7 +61,7 @@ const Users = () => {
             >
               <UserItem
                 user={user}
-                isOpen={editableUserId == user.id ? true : false}
+                isOpen={currentUserId == user.id ? true : false}
                 handleCloseAll={handleCloseAll}
               />
             </div>
@@ -76,4 +76,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default UsersList;

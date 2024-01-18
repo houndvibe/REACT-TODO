@@ -3,7 +3,7 @@ import App from "./routes/App.tsx";
 import { Provider } from "react-redux";
 import store from "./redux/store.ts";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TodoIndexPage from "./components/TodoIndexPage.tsx";
+import TodoIndexPage from "./components/todos/TodoIndexPage.tsx";
 import { loader as UserPageLoader, UserPage } from "./routes/UserPage.tsx";
 
 const router = createBrowserRouter([

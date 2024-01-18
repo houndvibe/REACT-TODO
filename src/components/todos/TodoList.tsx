@@ -1,5 +1,5 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { todoProps } from "../types";
+import { todoProps } from "../../types";
 import TodoItem from "./TodoItem";
 import { useState } from "react";
 

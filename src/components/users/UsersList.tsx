@@ -8,10 +8,12 @@ import {
 } from "../../redux/userApiSlice";
 import { userProps } from "../../types";
 import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
+import { useState } from "react";
 
 const UsersList = () => {
   const [addNewUser] = useAddUserMutation();
   const [setCurrentUserId] = useSetCurrentUserIdMutation();
+  const [opendUserId, setOpendUserId] = useState("");
 
   const { data: users, isLoading, isError, error } = useGetUsersQuery("");
 
@@ -21,10 +23,13 @@ const UsersList = () => {
     if (currentUserId != user.id) {
       setCurrentUserId(user.id);
     }
+    if (opendUserId != user.id) {
+      setOpendUserId(user.id);
+    }
   };
 
   const handleCloseAll = (): void => {
-    setCurrentUserId(null);
+    setOpendUserId("");
   };
 
   const handleAddNewUser = async () => {
@@ -38,6 +43,7 @@ const UsersList = () => {
         age: "",
         password: "",
       };
+      setOpendUserId(id);
       await setCurrentUserId(id).unwrap();
       await addNewUser(newUser).unwrap();
     } catch (err) {
@@ -61,7 +67,7 @@ const UsersList = () => {
             >
               <UserItem
                 user={user}
-                isOpen={currentUserId == user.id ? true : false}
+                isOpen={opendUserId == user.id ? true : false}
                 handleCloseAll={handleCloseAll}
               />
             </div>
@@ -69,7 +75,11 @@ const UsersList = () => {
         </div>
       )}
 
-      <MyButton variant="primary" onClick={handleAddNewUser}>
+      <MyButton
+        variant="primary"
+        className={users?.length ? undefined : "h-48 w-56"}
+        onClick={handleAddNewUser}
+      >
         add user
       </MyButton>
     </div>

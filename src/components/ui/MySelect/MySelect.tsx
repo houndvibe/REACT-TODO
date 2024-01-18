@@ -1,5 +1,3 @@
-import { nanoid } from "@reduxjs/toolkit";
-
 interface MySelectProps extends React.ComponentPropsWithoutRef<"select"> {
   options: string[];
 }
@@ -13,7 +11,7 @@ const MySelect: React.FC<MySelectProps> = ({ options, onChange }) => {
       >
         {options.map((option) => {
           return (
-            <option value={option} key={nanoid()}>
+            <option value={option} key={option}>
               {option}
             </option>
           );

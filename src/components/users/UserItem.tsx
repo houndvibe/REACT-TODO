@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { userProps } from "../../types";
+import { todoProps, userProps } from "../../types";
 import MyButton from "../ui/MyButton/MyButton";
 import {
   useDeleteUserMutation,
@@ -8,7 +8,11 @@ import {
 import { PiEyeClosedBold, PiEyeBold } from "react-icons/pi";
 import { MdOutlineDone } from "react-icons/md";
 import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import {
+  useDeleteTodoMutation,
+  useGetTodosQuery,
+} from "../../redux/todoApiSlice";
 
 interface userItemProps {
   user: userProps;
@@ -27,13 +31,22 @@ const UserItem: React.FC<userItemProps> = ({
   });
   const nameFieldRef = useRef<null | HTMLInputElement>(null);
 
+  const navigate = useNavigate();
+
   const [deleteUser] = useDeleteUserMutation();
   const [editUser] = useEditUserMutation();
-  const { currentUser } = useAllAboutUsers();
+  const { currentUser, currentUserId } = useAllAboutUsers();
+  const [deleteTodo] = useDeleteTodoMutation();
 
   useEffect(() => {
     nameFieldRef.current && nameFieldRef?.current.focus();
   }, [isOpen]);
+
+  const { data: todos } = useGetTodosQuery(undefined);
+
+  const currentUserTodos = todos
+    ? todos.filter((todo: todoProps) => todo.userId == currentUserId)
+    : [];
 
   const handleChangeUserInfo =
     (type: string) =>
@@ -41,17 +54,27 @@ const UserItem: React.FC<userItemProps> = ({
       setEditedUser({ ...editedUser, [type]: e.target.value });
     };
 
-  const handleDeleteUser = (): void => {
-    deleteUser(user.id);
+  const handleDeleteUser = async () => {
+    try {
+      await deleteUser(user.id);
+      await currentUserTodos.forEach((todo: todoProps) => {
+        deleteTodo(todo.id);
+      });
+    } catch (err) {
+      console.error("Failed to save the user: ", err);
+    }
+
+    navigate("/");
   };
 
   const handleOk = (): void => {
     editUser(editedUser);
+    handleCloseAll();
   };
 
   const handleCancel = (): void => {
-    handleCloseAll();
     setEditedUser({ ...user });
+    handleCloseAll();
   };
 
   return (
@@ -70,34 +93,38 @@ const UserItem: React.FC<userItemProps> = ({
 
         {isOpen && (
           <div className="mt-3 flex flex-wrap">
-            {Object.entries(user).map(([fieldName]) => {
-              return fieldName === "id" ||
-                fieldName === "isOpen" ||
-                fieldName === "clearLastCreated" ? null : (
-                <div className="relative m-2 flex items-center" key={fieldName}>
-                  <div className="w-20 text-center text-lg">{fieldName}:</div>
-                  <input
-                    className=" ml-2 box-border rounded-md px-2 py-1 outline-none ring-blue focus:ring-4"
-                    ref={fieldName == "nickName" ? nameFieldRef : null}
-                    value={editedUser[fieldName as keyof typeof editedUser]}
-                    type={
-                      fieldName == "password" && !isPassVisible
-                        ? "password"
-                        : "text"
-                    }
-                    onChange={handleChangeUserInfo(fieldName)}
-                  />
-                  {fieldName == "password" && (
-                    <div
-                      className="absolute left-[260px] top-2"
-                      onClick={() => setisPassVisible(!isPassVisible)}
-                    >
-                      {isPassVisible ? <PiEyeBold /> : <PiEyeClosedBold />}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+            <form action="">
+              {Object.entries(user).map(([fieldName]) => {
+                return fieldName === "id" ? null : (
+                  <div
+                    className="relative m-2 flex items-center"
+                    key={fieldName}
+                  >
+                    <div className="w-20 text-center text-lg">{fieldName}:</div>
+                    <input
+                      autoComplete="off"
+                      className=" ml-2 box-border rounded-md px-2 py-1 outline-none ring-blue focus:ring-4"
+                      ref={fieldName == "nickName" ? nameFieldRef : null}
+                      value={editedUser[fieldName as keyof typeof editedUser]}
+                      type={
+                        fieldName == "password" && !isPassVisible
+                          ? "password"
+                          : "text"
+                      }
+                      onChange={handleChangeUserInfo(fieldName)}
+                    />
+                    {fieldName == "password" && (
+                      <div
+                        className="absolute left-[260px] top-2"
+                        onClick={() => setisPassVisible(!isPassVisible)}
+                      >
+                        {isPassVisible ? <PiEyeBold /> : <PiEyeClosedBold />}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </form>
 
             <div className="my-2 ml-1  flex space-x-2">
               <div>

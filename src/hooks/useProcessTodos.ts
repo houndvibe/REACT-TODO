@@ -1,20 +1,36 @@
 import { useMemo } from "react";
+import { todoProps } from "../types";
+import { todoListViewParamsProps } from "../routes/UserPage";
 
-export const useProcessTodos = (todos, todoListViewParams) => {
-  const sortFunctionsByTypes = {
-    newFirst: (a, b) => new Date(b.date) - new Date(a.date),
-    oldFirst: (a, b) => new Date(a.date) - new Date(b.date),
+interface sortFunctionsByTypesProps {
+  ["new first"]: (a: todoProps, b: todoProps) => number;
+  ["old first"]: (a: todoProps, b: todoProps) => number;
+}
+
+export const useProcessTodos = (
+  todos: todoProps[],
+  todoListViewParams: todoListViewParamsProps,
+) => {
+  const sortFunctionsByTypes: sortFunctionsByTypesProps = {
+    ["new first"]: (a, b): number =>
+      +new Date(b.startDate) - +new Date(a.startDate),
+    ["old first"]: (a, b): number =>
+      +new Date(a.startDate) - +new Date(b.startDate),
   };
 
   const filteredTodos = useMemo(() => {
     return todoListViewParams.filterType == "all"
       ? todos
-      : todos.filter((todo) => todo.status == todoListViewParams.filterType);
+      : todos.filter(
+          (todo: todoProps) => todo.status == todoListViewParams.filterType,
+        );
   }, [todos, todoListViewParams.filterType]);
 
   const filteredAndSorted = useMemo(() => {
     return [...filteredTodos].sort(
-      sortFunctionsByTypes[todoListViewParams.sortType],
+      sortFunctionsByTypes[
+        todoListViewParams.sortType as keyof typeof sortFunctionsByTypes
+      ],
     );
   }, [filteredTodos, todoListViewParams.sortType]);
 

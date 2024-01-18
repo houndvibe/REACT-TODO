@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useDeleteTodoMutation,
   useEditTodoMutation,
@@ -9,14 +9,27 @@ import MyButton from "../ui/MyButton/MyButton";
 interface todoItemProps {
   todoItem: todoProps;
   isOpen: boolean;
+  handleCloseAllTodos: () => void;
+  index: number;
 }
 
-const TodoItem: React.FC<todoItemProps> = ({ todoItem, isOpen }) => {
+const TodoItem: React.FC<todoItemProps> = ({
+  todoItem,
+  isOpen,
+  handleCloseAllTodos,
+  index,
+}) => {
   const [deleteTodo] = useDeleteTodoMutation();
   const [editTodo] = useEditTodoMutation();
   const [editedTodo, setEditedTodo] = useState<todoProps>({
     ...todoItem,
   });
+
+  const titleFieldRef = useRef<null | HTMLInputElement>(null);
+
+  useEffect(() => {
+    titleFieldRef.current && titleFieldRef?.current.focus();
+  }, [isOpen]);
 
   const handleChangeTodoInfo =
     (type: string) =>
@@ -29,7 +42,7 @@ const TodoItem: React.FC<todoItemProps> = ({ todoItem, isOpen }) => {
       editedTodo.status == "completed"
         ? "not started"
         : editedTodo.status == "not started"
-          ? "in progress"
+          ? "in-progress"
           : "completed";
 
     setEditedTodo({ ...editedTodo, status: newStatus as todoStatus });
@@ -41,31 +54,37 @@ const TodoItem: React.FC<todoItemProps> = ({ todoItem, isOpen }) => {
 
   const handleEditTodo = async () => {
     await editTodo(editedTodo);
+    handleCloseAllTodos();
+  };
+
+  const handleCancelEditTodo = async () => {
+    await setEditedTodo({ ...todoItem });
+    handleCloseAllTodos();
   };
 
   return (
     <div
-      className={`my-1 rounded-md p-3 ${editedTodo.status === "completed" ? "bg-grey" : "bg-yellow hover:bg-yellowHover active:bg-yellowActive"} `}
+      className={`my-1 rounded-md p-3 ${editedTodo.status === "completed" ? "bg-blue" : editedTodo.status === "not started" ? "bg-grey" : "bg-yellow hover:bg-yellowHover active:bg-yellowActive"} `}
     >
-      <div className=" flex justify-between ">
-        <div>{todoItem.title}</div>
+      <div className=" flex items-center justify-between border-y-2 border-white p-2">
+        <div>{index + 1 + "." + todoItem.title}</div>
         <div>
           {editedTodo.status == "completed" && !isOpen && (
             <MyButton variant="danger" onClick={handleDeleteTodo}>
-              delete
+              delete completed
             </MyButton>
           )}
         </div>
       </div>
       {isOpen ? (
         <div>
-          <div className="flex">
+          <div className="mt-2 flex">
             <div>
               {Object.entries(todoItem).map(([fieldName]) => {
                 return fieldName === "id" ||
                   fieldName === "userId" ||
                   fieldName === "description" ? null : (
-                  <div>
+                  <div key={fieldName}>
                     <div
                       className="relative m-2 flex items-center"
                       key={fieldName}
@@ -77,7 +96,7 @@ const TodoItem: React.FC<todoItemProps> = ({ todoItem, isOpen }) => {
                         <button
                           onClick={handleChangeTodoStatus}
                           type="button"
-                          className="ml-2 rounded-md bg-blue px-5 py-1 text-center text-sm font-medium text-white "
+                          className={`ml-2 rounded-md px-5 py-1 text-center text-sm font-medium  ${editedTodo.status == "completed" ? "bg-yellow" : "bg-blue text-white"}`}
                         >
                           {editedTodo.status}
                         </button>
@@ -87,6 +106,7 @@ const TodoItem: React.FC<todoItemProps> = ({ todoItem, isOpen }) => {
                           value={
                             editedTodo[fieldName as keyof typeof editedTodo]
                           }
+                          ref={fieldName == "title" ? titleFieldRef : null}
                           type={`${fieldName === "startDate" || fieldName === "endDate" ? "date" : "text"}`}
                           className="ml-2 box-border rounded-md px-2 py-1 outline-none ring-blue focus:ring-4"
                         />
@@ -96,10 +116,9 @@ const TodoItem: React.FC<todoItemProps> = ({ todoItem, isOpen }) => {
                 );
               })}
             </div>
-            <div>
-              <div>Description</div>
+            <div className="mt-2">
               <textarea
-                className="rounded-md p-2"
+                className="rounded-md p-2 outline-none ring-blue focus:ring-4"
                 cols={32}
                 rows={6}
                 value={editedTodo.description}
@@ -107,10 +126,25 @@ const TodoItem: React.FC<todoItemProps> = ({ todoItem, isOpen }) => {
               />
             </div>
           </div>
-          <div className="flex">
+          <div className="mt-4 flex">
             <div className="mr-2">
-              <MyButton variant="primary" onClick={handleEditTodo}>
-                ok
+              <MyButton
+                variant={
+                  editedTodo.status == "completed" ? "secondary" : "primary"
+                }
+                onClick={handleEditTodo}
+              >
+                save
+              </MyButton>
+            </div>
+            <div className="mr-2">
+              <MyButton
+                variant={
+                  editedTodo.status == "completed" ? "secondary" : "primary"
+                }
+                onClick={handleCancelEditTodo}
+              >
+                cancel
               </MyButton>
             </div>
             <div>

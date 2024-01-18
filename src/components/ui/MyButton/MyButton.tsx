@@ -5,7 +5,7 @@ interface MyButtonProps extends React.ComponentPropsWithoutRef<"button"> {
 }
 
 const MyButton: React.FC<MyButtonProps> = (props) => {
-  const { children, variant, ...rest } = props;
+  const { children, variant, className, ...rest } = props;
 
   const makeClassname = (variant: buttonVariants): string => {
     const baseStyles: string =
@@ -21,8 +21,14 @@ const MyButton: React.FC<MyButtonProps> = (props) => {
     return baseStyles + specificStyles;
   };
 
+  /*   console.log(`${className}${makeClassname(variant)}`); */
+
   return (
-    <button id="b" {...rest} className={makeClassname(variant)}>
+    <button
+      id="b"
+      {...rest}
+      className={`${className}${makeClassname(variant)}`}
+    >
       {children}
     </button>
   );

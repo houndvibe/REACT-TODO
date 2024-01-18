@@ -1,7 +1,132 @@
 {
   "currentUser": {
-    "id": "YkoFEPCaxSbi6jgG_VwvV"
+    "id": "VE75Wqq3c1MWjua3cgTPz"
   },
-  "users": [],
-  "todos": []
+  "users": [
+    {
+      "id": "VE75Wqq3c1MWjua3cgTPz",
+      "nickName": "pass 123",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "password": "123"
+    },
+    {
+      "id": "G41p38-PSvmxplj5Huu2f",
+      "nickName": "pass 321",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "password": "321"
+    },
+    {
+      "id": "IxM7PR_RpsR6H28BI5QIW",
+      "nickName": "pass 111",
+      "firstName": "",
+      "lastName": "",
+      "age": "",
+      "password": "111"
+    }
+  ],
+  "todos": [
+    {
+      "id": "sEMEb4j8hIO7JnuePUDJO",
+      "userId": "G41p38-PSvmxplj5Huu2f",
+      "title": "Todo...",
+      "status": "in-progress",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "Weym9_lU9x1haxTjKzZiF",
+      "userId": "IxM7PR_RpsR6H28BI5QIW",
+      "title": "Todo...",
+      "status": "not started",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "ZLngI5G4aiK4OEYljjztD",
+      "userId": "IxM7PR_RpsR6H28BI5QIW",
+      "title": "Todo...",
+      "status": "in-progress",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "mfTYiPxugjfxMItBK3sip",
+      "userId": "IxM7PR_RpsR6H28BI5QIW",
+      "title": "Todo...",
+      "status": "not started",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "CyNiSylEz-51RVTzQvX3f",
+      "userId": "G41p38-PSvmxplj5Huu2f",
+      "title": "Todo...",
+      "status": "completed",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "6lKet6ITmnyTrCZP8noAq",
+      "userId": "G41p38-PSvmxplj5Huu2f",
+      "title": "Todo...",
+      "status": "completed",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "irMmTv54k_zyfuGuiecOi",
+      "userId": "G41p38-PSvmxplj5Huu2f",
+      "title": "Todo...",
+      "status": "completed",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "mtMYivt83fOTsVqqSzVgV",
+      "userId": "VE75Wqq3c1MWjua3cgTPz",
+      "title": "Todo...",
+      "status": "in-progress",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "FRBd_ZyUznLQzT_5Qrpiv",
+      "userId": "VE75Wqq3c1MWjua3cgTPz",
+      "title": "Todo...",
+      "status": "completed",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "t7hk6_gnQyvFx-A53cKyQ",
+      "userId": "G41p38-PSvmxplj5Huu2f",
+      "title": "Todo...",
+      "status": "not started",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    },
+    {
+      "id": "RNF6atWX0rXsPnVWDSxi1",
+      "userId": "VE75Wqq3c1MWjua3cgTPz",
+      "title": "Todo...",
+      "status": "not started",
+      "startDate": "2024-01-18",
+      "endDate": "2024-01-18",
+      "description": "todo description..."
+    }
+  ]
 }

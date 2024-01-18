@@ -38,7 +38,9 @@ const TodoList: React.FC<todoListProps> = ({
     );
   });
 
-  return <div className="max-h-[68vh] overflow-y-auto">{renderedList}</div>;
+  return (
+    <div className="mt-4 max-h-[68vh] overflow-y-auto">{renderedList}</div>
+  );
 };
 
 export default TodoList;

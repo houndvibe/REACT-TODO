@@ -9,23 +9,60 @@ import {
 import { userProps } from "../../types";
 import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
 import { useState } from "react";
+import MyModal from "../ui/MyModal/MyModal";
+
+interface potentialUser {
+  password: string;
+  id: string;
+}
 
 const UsersList = () => {
   const [addNewUser] = useAddUserMutation();
   const [setCurrentUserId] = useSetCurrentUserIdMutation();
-  const [opendUserId, setOpendUserId] = useState("");
+
+  const [opendUserId, setOpendUserId] = useState<string>("");
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [enteredPassword, setEnteredPassword] = useState<string>("");
+  const [showPasswordMessage, setShowPasswordMessage] =
+    useState<boolean>(false);
+  const [potentialUser, setPotentialUser] = useState<potentialUser>(
+    {} as potentialUser,
+  );
 
   const { data: users, isLoading, isError, error } = useGetUsersQuery("");
-
   const { currentUserId } = useAllAboutUsers();
 
-  const handleClickUser = (user: userProps) => (): void => {
+  const handleClickUser = (user: userProps) => async () => {
     if (currentUserId != user.id) {
-      setCurrentUserId(user.id);
+      setIsOpen(true);
+      setPotentialUser({ password: user.password, id: user.id });
+    } else {
+      if (opendUserId != user.id) {
+        setOpendUserId(user.id);
+      }
     }
-    if (opendUserId != user.id) {
-      setOpendUserId(user.id);
+  };
+
+  const handleOkModal = () => {
+    if (potentialUser.password == enteredPassword) {
+      setIsOpen(false);
+      setCurrentUserId(potentialUser.id);
+      setOpendUserId(potentialUser.id);
+      setShowPasswordMessage(false);
+      setEnteredPassword("");
+    } else {
+      setShowPasswordMessage(true);
     }
+  };
+
+  const handleCancelModal = () => {
+    setIsOpen(false);
+    setShowPasswordMessage(false);
+    setEnteredPassword("");
+  };
+
+  const handleSetPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEnteredPassword(e.target.value);
   };
 
   const handleCloseAll = (): void => {
@@ -53,6 +90,14 @@ const UsersList = () => {
 
   return (
     <div className="flex-col justify-around">
+      <MyModal
+        modalIsOpen={modalIsOpen}
+        enteredPassword={enteredPassword}
+        handleSetPassword={handleSetPassword}
+        showPasswordMessage={showPasswordMessage}
+        handleOkModal={handleOkModal}
+        handleCancelModal={handleCancelModal}
+      />
       {isLoading ? (
         <>Loading...</>
       ) : isError ? (
@@ -74,7 +119,6 @@ const UsersList = () => {
           ))}
         </div>
       )}
-
       <MyButton
         variant="primary"
         className={users?.length ? undefined : "h-48 w-full text-4xl"}

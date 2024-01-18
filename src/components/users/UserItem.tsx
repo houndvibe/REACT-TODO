@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { todoProps, userProps } from "../../types";
 import MyButton from "../ui/MyButton/MyButton";
 import {
@@ -29,6 +29,7 @@ const UserItem: React.FC<userItemProps> = ({
   const [editedUser, setEditedUser] = useState<userProps>({
     ...user,
   });
+
   const nameFieldRef = useRef<null | HTMLInputElement>(null);
 
   const navigate = useNavigate();
@@ -38,9 +39,9 @@ const UserItem: React.FC<userItemProps> = ({
   const { currentUser, currentUserId } = useAllAboutUsers();
   const [deleteTodo] = useDeleteTodoMutation();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     nameFieldRef.current && nameFieldRef?.current.focus();
-  }, [isOpen]);
+  }, [isOpen]); */
 
   const { data: todos } = useGetTodosQuery(undefined);
 

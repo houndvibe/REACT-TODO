@@ -40,7 +40,6 @@ export const UserPage = () => {
   return (
     <div>
       <TodoStaticPannel handleChangeViewParams={handleChangeViewParams} />
-
       <div>
         {todosError ? (
           <>Oh no, there was an error</>
@@ -49,8 +48,9 @@ export const UserPage = () => {
         ) : todos ? (
           todos.length ? (
             <div>
-              <div className="ml-4 mt-4 text-2xl">
-                {currentUser?.nickName} TODOS:
+              <div className="mt-4 text-2xl">
+                <span className="text-4xl">{currentUser?.nickName}</span>{" "}
+                <span>tasks:</span>
               </div>
               <TodoList
                 currentUserTodos={currentUserTodos}

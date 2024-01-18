@@ -77,7 +77,7 @@ const UsersList = () => {
 
       <MyButton
         variant="primary"
-        className={users?.length ? undefined : "h-48 w-56"}
+        className={users?.length ? undefined : "h-48 w-full text-4xl"}
         onClick={handleAddNewUser}
       >
         add user

@@ -7,7 +7,7 @@ const TodoIndexPage = () => {
     <div className="flex h-full w-full items-center justify-center bg-red text-7xl text-white">
       {users?.length ? (
         <span className="text-center">
-          Save / Choose user <br />
+          click on user <br />
           to see todos
         </span>
       ) : (

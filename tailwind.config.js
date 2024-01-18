@@ -13,6 +13,8 @@ export default {
       blueHover: "#38a4bc",
       blueActive: "#2f899d",
       grey: "#e5e4e2",
+      greyHover: "#cfcdc9",
+      greyActive: "#bbb9b4",
       white: "#FFFFFF",
       ghostWhite: "#f8f8ff",
       black: "#000000",

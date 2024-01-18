@@ -49,7 +49,7 @@ export const UserPage = () => {
         ) : todos ? (
           todos.length ? (
             <div>
-              <div className="mt-4 text-2xl">
+              <div className="ml-4 mt-4 text-2xl">
                 {currentUser?.nickName} TODOS:
               </div>
               <TodoList

@@ -80,7 +80,7 @@ const UserItem: React.FC<userItemProps> = ({
   return (
     <NavLink to={`user/${user.id}`}>
       <div
-        className={`relative min-w-80 overflow-hidden rounded-lg bg-grey p-2`}
+        className={`${!isOpen && "hover:bg-greyHover active:bg-greyActive"} relative min-w-80  rounded-lg bg-grey p-2`}
       >
         <div className="flex items-center justify-between">
           <div className="text-4xl">{user.nickName}</div>

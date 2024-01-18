@@ -64,7 +64,7 @@ const TodoItem: React.FC<todoItemProps> = ({
 
   return (
     <div
-      className={`my-1 rounded-md p-3 ${editedTodo.status === "completed" ? "bg-blue" : editedTodo.status === "not started" ? "bg-grey" : "bg-yellow hover:bg-yellowHover active:bg-yellowActive"} `}
+      className={`my-1 rounded-md p-3 ${editedTodo.status === "completed" ? `bg-blue ${!isOpen && `hover:bg-blueHover active:bg-blueActive`} ` : editedTodo.status === "not started" ? `${!isOpen && `hover:bg-greyHover active:bg-greyActive`} bg-grey` : `bg-yellow ${!isOpen && `hover:bg-yellowHover active:bg-yellowActive`}`} `}
     >
       <div className=" flex items-center justify-between border-y-2 border-white p-2">
         <div>{index + 1 + "." + todoItem.title}</div>

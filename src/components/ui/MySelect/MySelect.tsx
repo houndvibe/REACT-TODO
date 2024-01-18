@@ -7,11 +7,11 @@ const MySelect: React.FC<MySelectProps> = ({ options, onChange }) => {
     <div>
       <select
         onChange={onChange}
-        className="bg-gray-50 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block w-full rounded-lg border p-1 text-sm dark:text-white"
+        className="focus:ring-blue-500 block w-full rounded-lg border-2 border-white bg-yellow p-1 text-lg outline-none focus:border-blue focus:ring-2"
       >
         {options.map((option) => {
           return (
-            <option value={option} key={option}>
+            <option className=" bg-white" value={option} key={option}>
               {option}
             </option>
           );

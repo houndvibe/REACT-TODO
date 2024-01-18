@@ -81,10 +81,10 @@ const UserItem: React.FC<userItemProps> = ({
   return (
     <NavLink to={`user/${user.id}`}>
       <div
-        className={`${!isOpen && "hover:bg-greyHover active:bg-greyActive"} relative min-w-80  rounded-lg bg-grey p-2`}
+        className={`${!isOpen && "hover:bg-greyHover active:bg-greyActive"} relative min-w-80  rounded-lg bg-grey p-2 ring-blue hover:ring-4`}
       >
         <div className="flex items-center justify-between">
-          <div className="text-4xl">{user.nickName}</div>
+          <div className="p-2 text-4xl">{user.nickName}</div>
           {currentUser?.id == user.id ? (
             <div className="mr-2 rounded-md bg-blue p-1">
               <MdOutlineDone />

@@ -16,7 +16,12 @@ interface potentialUser {
   id: string;
 }
 
-const UsersList = () => {
+interface usersListProps {
+  isCompact: boolean;
+  setIsCompact: () => void;
+}
+
+const UsersList: React.FC<usersListProps> = ({ isCompact, setIsCompact }) => {
   const [opendUserId, setOpendUserId] = useState<string>("");
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
   const [enteredPassword, setEnteredPassword] = useState<string>("");
@@ -114,19 +119,30 @@ const UsersList = () => {
               <UserItem
                 user={user}
                 isOpen={opendUserId == user.id ? true : false}
+                isCompact={isCompact}
                 handleCloseAll={handleCloseAll}
               />
             </div>
           ))}
         </div>
       )}
-      <MyButton
-        variant="primary"
-        className={users?.length ? undefined : "h-48 w-full text-4xl"}
-        onClick={handleAddNewUser}
-      >
-        add user
-      </MyButton>
+      <div className="flex justify-between">
+        {!isCompact ? (
+          <MyButton
+            variant="primary"
+            className={users?.length ? undefined : "h-48 w-full text-4xl"}
+            onClick={handleAddNewUser}
+          >
+            add user
+          </MyButton>
+        ) : null}
+
+        {users?.length ? (
+          <MyButton variant="primary" onClick={setIsCompact}>
+            {isCompact ? ">" : "<"}
+          </MyButton>
+        ) : null}
+      </div>
     </div>
   );
 };

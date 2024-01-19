@@ -17,6 +17,7 @@ import {
 interface userItemProps {
   user: userProps;
   isOpen: boolean;
+  isCompact: boolean;
   handleCloseAll: () => void;
 }
 
@@ -24,6 +25,7 @@ const UserItem: React.FC<userItemProps> = ({
   user,
   isOpen,
   handleCloseAll,
+  isCompact,
 }) => {
   const [isPassVisible, setisPassVisible] = useState(false);
   const [editedUser, setEditedUser] = useState<userProps>({
@@ -81,10 +83,12 @@ const UserItem: React.FC<userItemProps> = ({
   return (
     <NavLink to={`user/${user.id}`}>
       <div
-        className={`${!isOpen && "hover:bg-greyHover active:bg-greyActive"} relative min-w-80  rounded-lg bg-grey p-2 ring-blue hover:ring-4`}
+        className={`${!isOpen && "hover:bg-greyHover active:bg-greyActive"} relative ${isCompact ? "max-h-[70px] w-[64px]" : "min-w-80"} rounded-lg bg-grey p-2 ring-blue hover:ring-4`}
       >
         <div className="flex items-center justify-between">
-          <div className="p-2 text-4xl">{user.nickName}</div>
+          <div className="p-2 text-4xl">
+            {isCompact ? user.nickName[0].toUpperCase() : user.nickName}
+          </div>
           {currentUser?.id == user.id ? (
             <div className="mr-2 rounded-md bg-blue p-1">
               <MdOutlineDone />
@@ -92,7 +96,7 @@ const UserItem: React.FC<userItemProps> = ({
           ) : null}
         </div>
 
-        {isOpen && (
+        {isOpen && !isCompact && (
           <div className="mt-3 flex flex-wrap">
             <form action="">
               {Object.entries(user).map(([fieldName]) => {

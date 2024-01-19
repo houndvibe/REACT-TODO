@@ -561,12 +561,40 @@ video {
   position: relative;
 }
 
+.bottom-\[10px\]{
+  bottom: 10px;
+}
+
 .left-\[260px\]{
   left: 260px;
 }
 
+.right-2{
+  right: 0.5rem;
+}
+
 .top-2{
   top: 0.5rem;
+}
+
+.bottom-\[2px\]{
+  bottom: 2px;
+}
+
+.bottom-\[4px\]{
+  bottom: 4px;
+}
+
+.bottom-\[20px\]{
+  bottom: 20px;
+}
+
+.bottom-\[px\]{
+  bottom: px;
+}
+
+.bottom-\[40px\]{
+  bottom: 40px;
 }
 
 .m-2{
@@ -652,6 +680,10 @@ video {
   max-height: 600px;
 }
 
+.max-h-\[70px\]{
+  max-height: 70px;
+}
+
 .max-h-\[90vh\]{
   max-height: 90vh;
 }
@@ -660,8 +692,24 @@ video {
   width: 5rem;
 }
 
+.w-\[64px\]{
+  width: 64px;
+}
+
+.w-\[86px\]{
+  width: 86px;
+}
+
 .w-full{
   width: 100%;
+}
+
+.w-\[100px\]{
+  width: 100px;
+}
+
+.w-\[110px\]{
+  width: 110px;
 }
 
 .min-w-80{
@@ -678,10 +726,6 @@ video {
 
 .basis-1\/4{
   flex-basis: 25%;
-}
-
-.basis-3\/4{
-  flex-basis: 75%;
 }
 
 .transform{
@@ -726,6 +770,10 @@ video {
 
 .overflow-y-auto{
   overflow-y: auto;
+}
+
+.overflow-x-hidden{
+  overflow-x: hidden;
 }
 
 .overflow-y-hidden{
@@ -825,14 +873,8 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.py-10{
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
-.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.pb-14{
+  padding-bottom: 3.5rem;
 }
 
 .text-center{

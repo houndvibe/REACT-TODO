@@ -21,8 +21,6 @@ const MyButton: React.FC<MyButtonProps> = (props) => {
     return baseStyles + specificStyles;
   };
 
-  /*   console.log(`${className}${makeClassname(variant)}`); */
-
   return (
     <button
       id="b"

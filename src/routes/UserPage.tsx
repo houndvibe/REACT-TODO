@@ -52,13 +52,15 @@ export const UserPage = () => {
                 <span className="text-4xl">{currentUser?.nickName}</span>{" "}
                 <span>tasks:</span>
               </div>
-              <TodoList
-                currentUserTodos={currentUserTodos}
-                viewParams={todoListViewParams}
-              />
+              <div className="max-h-[600px] overflow-y-auto">
+                <TodoList
+                  currentUserTodos={currentUserTodos}
+                  viewParams={todoListViewParams}
+                />
+              </div>
             </div>
           ) : (
-            <div className="mt-10 flex h-full w-full items-center justify-center rounded-md bg-red p-10 text-7xl text-white">
+            <div className="mt-10 flex h-full w-full items-center justify-center rounded-md bg-red  text-7xl text-white">
               <span className=" text-center">{`^ now add you first todo`}</span>
             </div>
           )

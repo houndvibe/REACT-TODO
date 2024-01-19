@@ -17,9 +17,6 @@ interface potentialUser {
 }
 
 const UsersList = () => {
-  const [addNewUser] = useAddUserMutation();
-  const [setCurrentUserId] = useSetCurrentUserIdMutation();
-
   const [opendUserId, setOpendUserId] = useState<string>("");
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
   const [enteredPassword, setEnteredPassword] = useState<string>("");
@@ -30,6 +27,10 @@ const UsersList = () => {
   );
 
   const { data: users, isLoading, isError, error } = useGetUsersQuery("");
+
+  const [addNewUser] = useAddUserMutation();
+  const [setCurrentUserId] = useSetCurrentUserIdMutation();
+
   const { currentUserId } = useAllAboutUsers();
 
   const handleClickUser = (user: userProps) => async () => {

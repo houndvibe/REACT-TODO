@@ -1,4 +1,9 @@
-React + RTKQuery + TypeScript Todo List
+--MULTI USER TODO LIST--
+-React
+-Redux Toolkit/RTKQuery
+-TypeScript
+-Tailwind
+-JSONServe
 
 Installation:
 1. git clone https://github.com/houndvibe/React-Todo.git

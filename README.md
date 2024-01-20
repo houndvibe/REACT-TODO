@@ -1,9 +1,13 @@
 --MULTI USER TODO LIST--
 
--React
--Redux Toolkit/RTKQuery
--TypeScript
--Tailwind
+-React 
+
+-Redux Toolkit/RTKQuery 
+
+-TypeScript 
+
+-Tailwind 
+
 -JSONServe
 
 Installation:

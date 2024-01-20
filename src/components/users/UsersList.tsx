@@ -10,6 +10,8 @@ import { userProps } from "../../types";
 import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
 import { useState } from "react";
 import MyModal from "../ui/MyModal/MyModal";
+import { useAppSelector } from "../../redux/hooks";
+import { selectIsAppSizeCompact } from "../../redux/sizeSlice";
 
 interface potentialUser {
   password: string;
@@ -17,11 +19,14 @@ interface potentialUser {
 }
 
 interface usersListProps {
-  isCompact: boolean;
-  setIsCompact: () => void;
+  isMenuCompact: boolean;
+  setIsMenuCompact: () => void;
 }
 
-const UsersList: React.FC<usersListProps> = ({ isCompact, setIsCompact }) => {
+const UsersList: React.FC<usersListProps> = ({
+  isMenuCompact,
+  setIsMenuCompact,
+}) => {
   const [opendUserId, setOpendUserId] = useState<string>("");
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
   const [enteredPassword, setEnteredPassword] = useState<string>("");
@@ -32,7 +37,7 @@ const UsersList: React.FC<usersListProps> = ({ isCompact, setIsCompact }) => {
   );
 
   const { data: users, isLoading, isError, error } = useGetUsersQuery("");
-
+  const isAppCompact = useAppSelector(selectIsAppSizeCompact);
   const [addNewUser] = useAddUserMutation();
   const [setCurrentUserId] = useSetCurrentUserIdMutation();
 
@@ -125,7 +130,7 @@ const UsersList: React.FC<usersListProps> = ({ isCompact, setIsCompact }) => {
                 <UserItem
                   user={user}
                   isOpen={opendUserId == user.id ? true : false}
-                  isCompact={isCompact}
+                  isCompact={isMenuCompact}
                   handleCloseAll={handleCloseAll}
                 />
               </div>
@@ -133,7 +138,7 @@ const UsersList: React.FC<usersListProps> = ({ isCompact, setIsCompact }) => {
           </div>
         )}
         <div className="flex justify-between">
-          {!isCompact ? (
+          {!isMenuCompact ? (
             <MyButton
               variant="primary"
               className={users?.length ? undefined : "h-48 w-full text-4xl"}
@@ -143,9 +148,9 @@ const UsersList: React.FC<usersListProps> = ({ isCompact, setIsCompact }) => {
             </MyButton>
           ) : null}
 
-          {users?.length ? (
-            <MyButton variant="primary" onClick={setIsCompact}>
-              {isCompact ? ">" : "<"}
+          {users?.length && !isAppCompact ? (
+            <MyButton variant="primary" onClick={setIsMenuCompact}>
+              {isMenuCompact ? ">" : "<"}
             </MyButton>
           ) : null}
         </div>

@@ -35,7 +35,9 @@ export const UserPage = () => {
 
   return (
     <div>
-      <TodoStaticPannel handleChangeViewParams={handleChangeViewParams} />
+      {localStorage.getItem("isAppCompact") !== "true" && (
+        <TodoStaticPannel handleChangeViewParams={handleChangeViewParams} />
+      )}
       <div>
         {todosError ? (
           <>Oh no, there was an error</>

@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./apiSlice";
+import sizeReducer from "./sizeSlice";
 
 const store = configureStore({
   reducer: {
+    size: sizeReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -10,5 +12,5 @@ const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-
+export type AppDispatch = typeof store.dispatch;
 export default store;

@@ -130,7 +130,6 @@ const UserItem: React.FC<userItemProps> = ({
                 );
               })}
             </form>
-
             <div className="my-2 ml-1  flex space-x-2">
               <div>
                 <MyButton variant="primary" onClick={handleOk}>

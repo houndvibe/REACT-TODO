@@ -78,7 +78,7 @@ const TodoItem: React.FC<todoItemProps> = ({
       </div>
       {isOpen ? (
         <div>
-          <div className="mt-2 flex">
+          <div className={`mt-2 flex max-[1000px]:flex-col`}>
             <div>
               {Object.entries(todoItem).map(([fieldName]) => {
                 return fieldName === "id" ||
@@ -108,7 +108,7 @@ const TodoItem: React.FC<todoItemProps> = ({
                           }
                           ref={fieldName == "title" ? titleFieldRef : null}
                           type={`${fieldName === "startDate" || fieldName === "endDate" ? "date" : "text"}`}
-                          className="ml-2 box-border rounded-md px-2 py-1 outline-none ring-blue focus:ring-4"
+                          className="ml-2 box-border rounded-md px-2 py-1 outline-none ring-blue focus:ring-4 max-[1000px]:w-[300px] max-[600px]:w-[160px]"
                         />
                       )}
                     </div>

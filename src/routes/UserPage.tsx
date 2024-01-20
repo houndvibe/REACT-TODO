@@ -35,9 +35,7 @@ export const UserPage = () => {
 
   return (
     <div>
-      {localStorage.getItem("isAppCompact") !== "true" && (
-        <TodoStaticPannel handleChangeViewParams={handleChangeViewParams} />
-      )}
+      <TodoStaticPannel handleChangeViewParams={handleChangeViewParams} />
       <div>
         {todosError ? (
           <>Oh no, there was an error</>
@@ -46,7 +44,7 @@ export const UserPage = () => {
         ) : todos ? (
           todos.length ? (
             <div>
-              <div className="mt-4 text-2xl">
+              <div className="mt-2 text-2xl">
                 <span className="text-4xl">{`${currentUser?.nickName}'s`}</span>{" "}
                 <span>tasks:</span>
               </div>

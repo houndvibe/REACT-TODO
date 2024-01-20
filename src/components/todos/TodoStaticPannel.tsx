@@ -8,6 +8,8 @@ import {
   useGetTodosQuery,
 } from "../../redux/todoApiSlice";
 import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
+import { useSelector } from "react-redux";
+import { selectIsAppSizeCompact } from "../../redux/sizeSlice";
 
 interface TodoStaticPannelProps {
   handleChangeViewParams: (type: string, value: string) => void;
@@ -18,7 +20,7 @@ const TodoStaticPannel: React.FC<TodoStaticPannelProps> = ({
 }) => {
   const [addNewTodo] = useAddTodoMutation();
   const [deleteTodo] = useDeleteTodoMutation();
-
+  const isAppCompact = useSelector(selectIsAppSizeCompact);
   const { currentUserId } = useAllAboutUsers();
 
   const { data: todos } = useGetTodosQuery(undefined);
@@ -61,26 +63,32 @@ const TodoStaticPannel: React.FC<TodoStaticPannelProps> = ({
 
   return (
     <div className="rpunded flex justify-around rounded-md bg-yellow p-2">
-      <MyButton variant="primary" onClick={handleAddTodo}>
-        add todo
-      </MyButton>
+      <div className="mr-2">
+        <MyButton variant="primary" onClick={handleAddTodo}>
+          add todo
+        </MyButton>
+      </div>
       <MyButton variant="danger" onClick={handleDeleteAllTodo}>
         delete all
       </MyButton>
-      <div className="flex items-center">
-        <span className="mx-2">Filter:</span>
-        <MySelect
-          options={["all", "completed", "in-progress", "not started"]}
-          onChange={handleChangeParams("filter")}
-        />
-      </div>
-      <div className="flex items-center">
-        <span className="mx-2">Sort:</span>
-        <MySelect
-          options={["new first", "old first"]}
-          onChange={handleChangeParams("sort")}
-        />
-      </div>
+      {!isAppCompact && (
+        <div className="flex">
+          <div className="flex items-center">
+            <span className="mx-2">Filter:</span>
+            <MySelect
+              options={["all", "completed", "in-progress", "not started"]}
+              onChange={handleChangeParams("filter")}
+            />
+          </div>
+          <div className="flex items-center">
+            <span className="mx-2">Sort:</span>
+            <MySelect
+              options={["new first", "old first"]}
+              onChange={handleChangeParams("sort")}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

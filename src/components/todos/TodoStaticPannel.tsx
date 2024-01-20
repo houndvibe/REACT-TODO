@@ -1,5 +1,5 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { todoProps } from "../../types";
+import { TodoStaticPannelProps, todoProps } from "../../types";
 import MyButton from "../ui/MyButton/MyButton";
 import MySelect from "../ui/MySelect/MySelect";
 import {
@@ -10,10 +10,6 @@ import {
 import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
 import { useSelector } from "react-redux";
 import { selectIsAppSizeCompact } from "../../redux/sizeSlice";
-
-interface TodoStaticPannelProps {
-  handleChangeViewParams: (type: string, value: string) => void;
-}
 
 const TodoStaticPannel: React.FC<TodoStaticPannelProps> = ({
   handleChangeViewParams,

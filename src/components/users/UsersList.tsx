@@ -6,42 +6,33 @@ import {
   useGetUsersQuery,
   useSetCurrentUserIdMutation,
 } from "../../redux/userApiSlice";
-import { userProps } from "../../types";
+import { potentialUserProps, userProps, usersListProps } from "../../types";
 import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
 import { useState } from "react";
 import MyModal from "../ui/MyModal/MyModal";
 import { useAppSelector } from "../../redux/hooks";
 import { selectIsAppSizeCompact } from "../../redux/sizeSlice";
 
-interface potentialUser {
-  password: string;
-  id: string;
-}
-
-interface usersListProps {
-  isMenuCompact: boolean;
-  setIsMenuCompact: () => void;
-}
-
 const UsersList: React.FC<usersListProps> = ({
   isMenuCompact,
   setIsMenuCompact,
 }) => {
+  const { data: users, isLoading, isError, error } = useGetUsersQuery("");
+  const isAppCompact = useAppSelector(selectIsAppSizeCompact);
+
+  const [addNewUser] = useAddUserMutation();
+  const [setCurrentUserId] = useSetCurrentUserIdMutation();
+
+  const { currentUserId } = useAllAboutUsers();
+
   const [opendUserId, setOpendUserId] = useState<string>("");
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
   const [enteredPassword, setEnteredPassword] = useState<string>("");
   const [showPasswordMessage, setShowPasswordMessage] =
     useState<boolean>(false);
-  const [potentialUser, setPotentialUser] = useState<potentialUser>(
-    {} as potentialUser,
+  const [potentialUser, setPotentialUser] = useState<potentialUserProps>(
+    {} as potentialUserProps,
   );
-
-  const { data: users, isLoading, isError, error } = useGetUsersQuery("");
-  const isAppCompact = useAppSelector(selectIsAppSizeCompact);
-  const [addNewUser] = useAddUserMutation();
-  const [setCurrentUserId] = useSetCurrentUserIdMutation();
-
-  const { currentUserId } = useAllAboutUsers();
 
   const handleClickUser = (user: userProps) => async () => {
     if (currentUserId != user.id) {
@@ -141,7 +132,7 @@ const UsersList: React.FC<usersListProps> = ({
           {!isMenuCompact ? (
             <MyButton
               variant="primary"
-              className={users?.length ? undefined : "h-48 w-full text-4xl"}
+              className={users?.length ? undefined : "h-96 w-full text-4xl"}
               onClick={handleAddNewUser}
             >
               add user

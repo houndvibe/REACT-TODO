@@ -1,9 +1,9 @@
 import { useMemo } from "react";
+import { userProps } from "../types";
 import {
   useGetCurrentUserIdQuery,
   useGetUsersQuery,
 } from "../redux/userApiSlice";
-import { userProps } from "../types";
 
 export const useAllAboutUsers = () => {
   const {
@@ -11,6 +11,7 @@ export const useAllAboutUsers = () => {
     isLoading: isCurrentUserIdLoading,
     error: currentUserIdError,
   } = useGetCurrentUserIdQuery(undefined);
+
   const {
     data: allUsers,
     isLoading: isAllUsersLoading,

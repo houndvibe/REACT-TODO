@@ -3,15 +3,8 @@ import {
   useDeleteTodoMutation,
   useEditTodoMutation,
 } from "../../redux/todoApiSlice";
-import { todoProps, todoStatus } from "../../types";
+import { todoItemProps, todoProps, todoStatus } from "../../types";
 import MyButton from "../ui/MyButton/MyButton";
-
-interface todoItemProps {
-  todoItem: todoProps;
-  isOpen: boolean;
-  handleCloseAllTodos: () => void;
-  index: number;
-}
 
 const TodoItem: React.FC<todoItemProps> = ({
   todoItem,
@@ -21,6 +14,7 @@ const TodoItem: React.FC<todoItemProps> = ({
 }) => {
   const [deleteTodo] = useDeleteTodoMutation();
   const [editTodo] = useEditTodoMutation();
+
   const [editedTodo, setEditedTodo] = useState<todoProps>({
     ...todoItem,
   });
@@ -37,7 +31,7 @@ const TodoItem: React.FC<todoItemProps> = ({
       setEditedTodo({ ...editedTodo, [type]: e.target.value });
     };
 
-  const handleChangeTodoStatus = () => {
+  const handleChangeTodoStatus = ():void => {
     const newStatus =
       editedTodo.status == "completed"
         ? "not started"

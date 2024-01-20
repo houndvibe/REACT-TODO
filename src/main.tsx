@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store.ts";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TodoIndexPage from "./components/todos/TodoIndexPage.tsx";
-import { UserPage } from "./routes/UserPage.tsx";
+import UserPage from "./routes/UserPage.tsx";
 import Modal from "react-modal";
 
 const router = createBrowserRouter([

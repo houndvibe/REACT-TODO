@@ -1,29 +1,24 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { todoProps } from "../../types";
+import { todoListProps, todoProps } from "../../types";
 import TodoItem from "./TodoItem";
 import { useState } from "react";
-import { todoListViewParamsProps } from "../../routes/UserPage";
 import { useProcessTodos } from "../../hooks/useProcessTodos";
-
-interface todoListProps {
-  currentUserTodos: todoProps[];
-  viewParams: todoListViewParamsProps;
-}
 
 const TodoList: React.FC<todoListProps> = ({
   currentUserTodos,
   viewParams,
 }) => {
+  const sortedAndFilteredTodods = useProcessTodos(currentUserTodos, viewParams);
+
   const [currentTodoId, setCurrentTodoId] = useState<string>("");
 
   const handleClickTodoItem = (id: string) => () => {
     setCurrentTodoId(id);
   };
+
   const handleCloseAllTodos = () => {
     setCurrentTodoId("");
   };
-
-  const sortedAndFilteredTodods = useProcessTodos(currentUserTodos, viewParams);
 
   const renderedList = sortedAndFilteredTodods.map((todo: todoProps, index) => {
     return (

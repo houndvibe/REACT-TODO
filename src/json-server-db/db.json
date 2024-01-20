@@ -1,33 +1,43 @@
 {
   "currentUser": {
-    "id": "C3xVqPh3pTdWM6bJXYdJj"
+    "id": "ioLxygDaMC5CGI86pHKlp"
   },
   "users": [
     {
-      "id": "7UVbYc3LDZvS9jyPDzei8",
-      "nickName": "New user",
-      "firstName": "",
-      "lastName": "",
-      "age": "",
-      "password": ""
-    },
-    {
-      "id": "C3xVqPh3pTdWM6bJXYdJj",
-      "nickName": "New user",
-      "firstName": "",
-      "lastName": "",
-      "age": "",
+      "id": "ioLxygDaMC5CGI86pHKlp",
+      "nickName": "JohnSmith94",
+      "firstName": "John",
+      "lastName": "Smith",
+      "age": "25",
       "password": ""
     }
   ],
   "todos": [
     {
-      "id": "YuhtEB5JYT7109OR6Ypcz",
-      "userId": "C3xVqPh3pTdWM6bJXYdJj",
-      "title": "Todo...",
-      "status": "not started",
+      "id": "hjioY_thji-RJGLuN7QwT",
+      "userId": "ioLxygDaMC5CGI86pHKlp",
+      "title": "wake up",
+      "status": "completed",
       "startDate": "2024-01-20",
       "endDate": "2024-01-20",
+      "description": "todo description..."
+    },
+    {
+      "id": "cCN3Yj5t8Q_7bYmB7yf43",
+      "userId": "ioLxygDaMC5CGI86pHKlp",
+      "title": "work all day",
+      "status": "in-progress",
+      "startDate": "2024-01-20",
+      "endDate": "2024-01-21",
+      "description": "no pain no gain..."
+    },
+    {
+      "id": "ontuojcGAkFDWmt7hhRGA",
+      "userId": "ioLxygDaMC5CGI86pHKlp",
+      "title": "go to sleep.",
+      "status": "not started",
+      "startDate": "2024-01-21",
+      "endDate": "2024-01-21",
       "description": "todo description..."
     }
   ]

@@ -3,16 +3,17 @@ import UsersList from "./users/UsersList";
 import { selectIsAppSizeCompact, setIsAppCompact } from "../redux/sizeSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
-const NavPanel = () => {
-  const [isMenuCompact, setIsMenuCompact] = useState(false);
+const NavPanel: React.FC = () => {
   const isAppCompact = useAppSelector(selectIsAppSizeCompact);
   const dispatch = useAppDispatch();
 
-  const handleSetIsMenuCompact = () => {
+  const [isMenuCompact, setIsMenuCompact] = useState(false);
+
+  const handleSetIsMenuCompact = (): void => {
     setIsMenuCompact(!isMenuCompact);
   };
 
-  const updateMedia = () => {
+  const updateMedia = (): void => {
     dispatch(setIsAppCompact(window.innerWidth < 800));
     if (isAppCompact) {
       setIsMenuCompact(true);

@@ -1,16 +1,11 @@
 import { useGetTodosQuery } from "../redux/todoApiSlice";
-import { todoProps } from "../types";
+import { todoListViewParamsProps, todoProps } from "../types";
 import TodoList from "../components/todos/TodoList";
 import TodoStaticPannel from "../components/todos/TodoStaticPannel";
 import { useAllAboutUsers } from "../hooks/useAllAboutUsers";
 import { useState } from "react";
 
-export interface todoListViewParamsProps {
-  filterType: string;
-  sortType: string;
-}
-
-export const UserPage = () => {
+const UserPage: React.FC = () => {
   const { currentUser } = useAllAboutUsers();
 
   const [todoListViewParams, setTodoListViewParams] =
@@ -25,11 +20,11 @@ export const UserPage = () => {
     error: todosError,
   } = useGetTodosQuery(undefined);
 
-  const handleChangeViewParams = (type: string, value: string) => {
+  const handleChangeViewParams = (type: string, value: string): void => {
     setTodoListViewParams({ ...todoListViewParams, [type + "Type"]: value });
   };
 
-  const currentUserTodos = todos
+  const currentUserTodos: todoProps[] = todos
     ? todos.filter((todo: todoProps) => todo.userId == currentUser?.id)
     : [];
 
@@ -40,12 +35,14 @@ export const UserPage = () => {
         {todosError ? (
           <>Oh no, there was an error</>
         ) : isTodosLoading ? (
-          <>Loading...</>
+          <div className="mt-2 flex h-full items-center justify-center rounded-md bg-red text-white">
+            Loading...
+          </div>
         ) : todos ? (
           todos.length ? (
             <div>
               <div className="mt-2 text-2xl">
-                <span className="text-4xl">{`${currentUser?.nickName}'s`}</span>{" "}
+                <span className="text-4xl">{`${currentUser?.nickName || "New user"}'s`}</span>{" "}
                 <span>tasks:</span>
               </div>
               <div>
@@ -67,3 +64,5 @@ export const UserPage = () => {
     </div>
   );
 };
+
+export default UserPage;

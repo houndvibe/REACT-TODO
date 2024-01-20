@@ -1,11 +1,9 @@
 import { useMemo } from "react";
-import { todoProps } from "../types";
-import { todoListViewParamsProps } from "../routes/UserPage";
-
-interface sortFunctionsByTypesProps {
-  ["new first"]: (a: todoProps, b: todoProps) => number;
-  ["old first"]: (a: todoProps, b: todoProps) => number;
-}
+import {
+  sortFunctionsByTypesProps,
+  todoListViewParamsProps,
+  todoProps,
+} from "../types";
 
 export const useProcessTodos = (
   todos: todoProps[],

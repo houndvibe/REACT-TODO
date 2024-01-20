@@ -49,10 +49,10 @@ export const UserPage = () => {
           todos.length ? (
             <div>
               <div className="mt-4 text-2xl">
-                <span className="text-4xl">{currentUser?.nickName}</span>{" "}
+                <span className="text-4xl">{`${currentUser?.nickName}'s`}</span>{" "}
                 <span>tasks:</span>
               </div>
-              <div className="max-h-[600px] overflow-y-auto">
+              <div>
                 <TodoList
                   currentUserTodos={currentUserTodos}
                   viewParams={todoListViewParams}
@@ -60,8 +60,8 @@ export const UserPage = () => {
               </div>
             </div>
           ) : (
-            <div className="mt-10 flex h-full w-full items-center justify-center rounded-md bg-red  text-7xl text-white">
-              <span className=" text-center">{`^ now add you first todo`}</span>
+            <div className="mt-10 flex w-full items-center justify-center rounded-md bg-red p-10  text-7xl text-white">
+              <span className="text-center">{`^ add you first todo`}</span>
             </div>
           )
         ) : (

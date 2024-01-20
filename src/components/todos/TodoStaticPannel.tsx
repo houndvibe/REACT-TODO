@@ -20,6 +20,7 @@ const TodoStaticPannel: React.FC<TodoStaticPannelProps> = ({
   const [deleteTodo] = useDeleteTodoMutation();
 
   const userId: string = useLoaderData() as string;
+
   const { data: todos } = useGetTodosQuery(undefined);
 
   const currentUserTodos = todos

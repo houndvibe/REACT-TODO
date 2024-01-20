@@ -40,8 +40,13 @@ const UsersList: React.FC<usersListProps> = ({ isCompact, setIsCompact }) => {
 
   const handleClickUser = (user: userProps) => async () => {
     if (currentUserId != user.id) {
-      setIsOpen(true);
-      setPotentialUser({ password: user.password, id: user.id });
+      if (user.password == "") {
+        setOpendUserId(user.id);
+        setCurrentUserId(user.id);
+      } else {
+        setIsOpen(true);
+        setPotentialUser({ password: user.password, id: user.id });
+      }
     } else {
       if (opendUserId != user.id) {
         setOpendUserId(user.id);
@@ -95,7 +100,7 @@ const UsersList: React.FC<usersListProps> = ({ isCompact, setIsCompact }) => {
   };
 
   return (
-    <div className="flex-col justify-around">
+    <div className="h-full ">
       <MyModal
         modalIsOpen={modalIsOpen}
         enteredPassword={enteredPassword}
@@ -104,44 +109,46 @@ const UsersList: React.FC<usersListProps> = ({ isCompact, setIsCompact }) => {
         handleOkModal={handleOkModal}
         handleCancelModal={handleCancelModal}
       />
-      {isLoading ? (
-        <>Loading...</>
-      ) : isError ? (
-        <>Error!{error.toString()}</>
-      ) : (
-        <div>
-          {users?.map((user: userProps) => (
-            <div
-              key={nanoid()}
-              onClick={handleClickUser(user)}
-              className="mb-2"
+      <div className=" flex h-full flex-col justify-between">
+        {isLoading ? (
+          <>Loading...</>
+        ) : isError ? (
+          <>Error!{error.toString()}</>
+        ) : (
+          <div>
+            {users?.map((user: userProps) => (
+              <div
+                key={nanoid()}
+                onClick={handleClickUser(user)}
+                className="mb-2"
+              >
+                <UserItem
+                  user={user}
+                  isOpen={opendUserId == user.id ? true : false}
+                  isCompact={isCompact}
+                  handleCloseAll={handleCloseAll}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+        <div className="flex justify-between">
+          {!isCompact ? (
+            <MyButton
+              variant="primary"
+              className={users?.length ? undefined : "h-48 w-full text-4xl"}
+              onClick={handleAddNewUser}
             >
-              <UserItem
-                user={user}
-                isOpen={opendUserId == user.id ? true : false}
-                isCompact={isCompact}
-                handleCloseAll={handleCloseAll}
-              />
-            </div>
-          ))}
-        </div>
-      )}
-      <div className="flex justify-between">
-        {!isCompact ? (
-          <MyButton
-            variant="primary"
-            className={users?.length ? undefined : "h-48 w-full text-4xl"}
-            onClick={handleAddNewUser}
-          >
-            add user
-          </MyButton>
-        ) : null}
+              add user
+            </MyButton>
+          ) : null}
 
-        {users?.length ? (
-          <MyButton variant="primary" onClick={setIsCompact}>
-            {isCompact ? ">" : "<"}
-          </MyButton>
-        ) : null}
+          {users?.length ? (
+            <MyButton variant="primary" onClick={setIsCompact}>
+              {isCompact ? ">" : "<"}
+            </MyButton>
+          ) : null}
+        </div>
       </div>
     </div>
   );

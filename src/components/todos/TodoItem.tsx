@@ -119,7 +119,7 @@ const TodoItem: React.FC<todoItemProps> = ({
             <div className="mt-2">
               <textarea
                 className="rounded-md p-2 outline-none ring-blue focus:ring-4"
-                cols={32}
+                cols={28}
                 rows={6}
                 value={editedTodo.description}
                 onChange={handleChangeTodoInfo("description")}

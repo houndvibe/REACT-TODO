@@ -2,12 +2,12 @@ import { nanoid } from "@reduxjs/toolkit";
 import { todoProps } from "../../types";
 import MyButton from "../ui/MyButton/MyButton";
 import MySelect from "../ui/MySelect/MySelect";
-import { useLoaderData } from "react-router-dom";
 import {
   useAddTodoMutation,
   useDeleteTodoMutation,
   useGetTodosQuery,
 } from "../../redux/todoApiSlice";
+import { useAllAboutUsers } from "../../hooks/useAllAboutUsers";
 
 interface TodoStaticPannelProps {
   handleChangeViewParams: (type: string, value: string) => void;
@@ -19,19 +19,19 @@ const TodoStaticPannel: React.FC<TodoStaticPannelProps> = ({
   const [addNewTodo] = useAddTodoMutation();
   const [deleteTodo] = useDeleteTodoMutation();
 
-  const userId: string = useLoaderData() as string;
+  const { currentUserId } = useAllAboutUsers();
 
   const { data: todos } = useGetTodosQuery(undefined);
 
   const currentUserTodos = todos
-    ? todos.filter((todo: todoProps) => todo.userId == userId)
+    ? todos.filter((todo: todoProps) => todo.userId == currentUserId)
     : [];
 
   const handleAddTodo = async () => {
     try {
       const newTodo: todoProps = {
         id: nanoid(),
-        userId: userId,
+        userId: currentUserId!,
         title: "Todo...",
         status: "not started",
         startDate: new Date().toISOString().split("T")[0],

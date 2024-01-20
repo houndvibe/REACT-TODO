@@ -9,4 +9,13 @@
     @apply m-0 box-border p-0;
     font-family: "Roboto", sans-serif;
   }
+  .app {
+    @apply box-border flex h-screen bg-blueHover p-2;
+  }
+  .app__content {
+    @apply relative m-auto flex max-h-[90vh] rounded-md bg-grey p-3;
+  }
+  .app__outletWrapper {
+    @apply w-full overflow-y-hidden rounded-md bg-white p-2;
+  }
 }

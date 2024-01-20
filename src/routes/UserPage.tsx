@@ -10,10 +10,6 @@ export interface todoListViewParamsProps {
   sortType: string;
 }
 
-export const loader = ({ params }) => {
-  return params.userId;
-};
-
 export const UserPage = () => {
   const { currentUser } = useAllAboutUsers();
 
@@ -60,7 +56,7 @@ export const UserPage = () => {
               </div>
             </div>
           ) : (
-            <div className="mt-10 flex w-full items-center justify-center rounded-md bg-red p-10  text-7xl text-white">
+            <div className="mt-2 flex w-full items-center justify-center rounded-md bg-red p-10 text-7xl text-white">
               <span className="text-center">{`^ add you first todo`}</span>
             </div>
           )

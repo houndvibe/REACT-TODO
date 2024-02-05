@@ -8,7 +8,9 @@
 
 -Tailwind 
 
--JSONServe
+-JSONServer
+
+-Vite
 
 Installation:
 1. git clone https://github.com/houndvibe/React-Todo.git
